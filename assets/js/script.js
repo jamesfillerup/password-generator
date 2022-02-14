@@ -2,25 +2,26 @@
 
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+var generateBtn = document.querySelector("#generate")
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var password = generatePassword()
+  var passwordText = document.querySelector("#password")
 
-  passwordText.value = password;
+  passwordText.value = password
 
 }
 
 //password data
-const characterAmountRange = document.getElementById('characterAmountRange');
-const characterAmountNumber = document.getElementById("characterAmountNumber");
-const includeLowercaseElement = document.getElementById("includeLowercaseElement");
-const includeUppercaseElement = document.getElementById("includeUppercaseElement");
-const includeNumbersElement = document.getElementById("includeNumbersElement");
-const includeSymbolsElement = document.getElementById("includeSymbolsElement");
-const form =document.getElementById('passwordGeneratorForm');
+const characterAmountRange = document.getElementById('characterAmountRange')
+const characterAmountNumber = document.getElementById("characterAmountNumber")
+const includeLowercaseElement = document.getElementById("includeLowercaseElement")
+const includeUppercaseElement = document.getElementById("includeUppercaseElement")
+const includeNumbersElement = document.getElementById("includeNumbersElement")
+const includeSymbolsElement = document.getElementById("includeSymbolsElement")
+const form =document.getElementById('passwordGeneratorForm')
+const passwordDisplay = document.getElementById('passwordDisplay')
 
 const LOWERCASE_CHAR_CODES = arrayFromLowToHigh(65, 90)
 const UPPERCASE_CHAR_CODES = arrayFromLowToHigh(97, 122)
@@ -34,8 +35,8 @@ const SYMBOL_CHAR_CODES = arrayFromLowToHigh(33, 47).concat(
 )
 
 
-characterAmountNumber.addEventListener('input', syncCharacterAmount);
-characterAmountRange.addEventListener('input', syncCharacterAmount);
+characterAmountNumber.addEventListener('input', syncCharacterAmount)
+characterAmountRange.addEventListener('input', syncCharacterAmount)
 
 form.addEventListener('submit', e => {
   e.preventDefault()
@@ -46,10 +47,23 @@ form.addEventListener('submit', e => {
   const includeSymbols=includeSymbolsElement.checked
 
   const password= generatePassword(characterAmount, includeUppercase,includeLowercase, includeNumbers, includeSymbols)
+
+  passwordDisplay.innerText = password
 })
 
 function generatePassword(characterAmount, includeUppercase,includeLowercase, includeNumbers, includeSymbols){
-  String.fromCharCode(65)
+  let charCodes= LOWERCASE_CHAR_CODES
+    if (includeUppercase) charCodes=charCodes.concat(UPPER_CHAR_CODES)
+    if (includeLowercase) charCodes=charCodes.concat(LOWER_CHAR_CODES)
+    if (includeNumbers) charCodes=charCodes.concat(NUMBER_CHAR_CODES)
+    if (includeSymbols) charCodes=charCodes.concat(SYMBOL_CHAR_CODES)
+
+    const passwordCharacters = []
+    for (let i = 0; i < characterAmount; i++) {
+      const characterCode = charCodes[Math.floor(Math.random()* charCodes.length)]
+      passwordCharacters.push(String.fromCharCode(characterCode))
+    }
+    return passwordCharacters.join ("")
 }
 
 function arrayFromLowToHigh(low, high){
@@ -75,5 +89,5 @@ function syncCharacterAmount(e){
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword)
 

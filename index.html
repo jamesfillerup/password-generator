@@ -17,15 +17,12 @@
             <h2>Generate a Password</h2>
             </div>
             <div class="card-body">
-            <textarea
+            <textarea class="password-display"
                 readonly
-                id="password"
+                id="passwordDisplay"
                 placeholder="Your Secure Password"
                 aria-label="Generated Password"
             ></textarea>
-            </div>
-            <div class="card-footer">
-            <button id="generate" class="btn">Generate Password</button>
             </div>
             <form class="form" class="passwordGeneratorForm">
 
@@ -45,10 +42,14 @@
 
                 <label for="includeSymbols">Include Symbols</label>
                 <input type="checkbox" name="" id="includeSymbols">
+            </form> <br>
 
-            </form>
+            <div class="card-footer">
+            <button type='submit' id="generate" class="btn">Generate Password</button>
+            </div>
         </div>
         </div>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
+
