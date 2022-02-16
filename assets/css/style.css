@@ -55,7 +55,9 @@ header {
 }
 
 .card-footer {
+  padding-top: 20px;
   text-align: center;
+  width: 100%;
 }
 
 .card-footer::before {
@@ -135,3 +137,22 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+.form {
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 1rem;
+  column-gap: 10rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.character-amount-container {
+  display: flex;
+  align-items: center;
+}
+
+.number-input {
+  width: 3rem;
+}
+
